@@ -39,6 +39,7 @@ class AddNote : AppCompatActivity() {
             oldNote = intent.getSerializableExtra("current_note") as NoteDto
             binding.etTitle.setText(oldNote.title)
             binding.etNote.setText(oldNote.description)
+            image = oldNote.image
             val bmp = oldNote.image?.size?.let {
                 BitmapFactory.decodeByteArray(oldNote.image, 0,
                     it
@@ -53,6 +54,7 @@ class AddNote : AppCompatActivity() {
         binding.imgSaveBtn.setOnClickListener {
 
             val title = binding.etTitle.text.toString()
+
             val note_des = binding.etNote.text.toString()
 
             if (title.isNotEmpty() || note_des.isNotEmpty()){

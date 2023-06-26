@@ -5,8 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:padding="10dp"
     tools:context=".ui.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#85000000"
+        android:gravity="center"
+        android:visibility="gone"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:elevation="15dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/tv_heading"
@@ -14,6 +40,7 @@
         android:layout_height="wrap_content"
         android:text="Notes"
         android:textSize="32sp"
+        android:layout_margin="10dp"
         android:paddingStart="20dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +49,7 @@
     <Button
         android:id="@+id/btn_send"
         android:layout_width="100dp"
+        android:layout_margin="10dp"
         android:layout_height="50dp"
         android:text="Send"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,6 +58,7 @@
     <EditText
         android:id="@+id/et_send"
         android:layout_width="match_parent"
+        android:layout_margin="10dp"
         android:layout_height="60dp"
         android:hint="Add Data"
         android:layout_marginTop="10dp"
@@ -38,20 +67,30 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_heading" />
 
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchLayout"
+        style="@style/ThemeOverlay.Material3.AutoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="16dp"
-        android:background="@drawable/bg_search_bar"
-        android:iconifiedByDefault="false"
-        android:searchIcon="@drawable/ic_search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="Search Here"
+        android:paddingHorizontal="10dp"
+        app:boxStrokeColor="@color/black"
+        app:endIconMode="clear_text"
+        app:hintTextColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/et_send"
-        app:queryBackground="@null"
-        app:queryHint="Search Notes" />
+        app:startIconDrawable="@drawable/ic_search"
+
+        app:startIconTint="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:textCursorDrawable="@drawable/cursor_styling" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvNotes"
@@ -59,19 +98,21 @@
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:overScrollMode="never"
+        android:layout_margin="10dp"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:spanCount="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/itemview_list"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/searchLayout" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="26dp"
+        android:layout_margin="10dp"
         android:layout_marginBottom="26dp"
         android:backgroundTint="@color/black"
         app:tint="@color/white"
